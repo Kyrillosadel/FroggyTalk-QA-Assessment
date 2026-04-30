@@ -8,7 +8,7 @@ def test_radio_chat_flow():
         "app": "/path/to/froggytalk.app"
     }
 
-    driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
+    driver = webdriver.Remote("http://localhost:4723", options=options) 
 
     driver.find_element("accessibility id", "RadioTab").click()
     driver.find_element("accessibility id", "RadioItem_Nigeria").click()
