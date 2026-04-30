@@ -6,7 +6,7 @@ Setup:
 - Download tests from the Repo and Navigate to the directory in which your API Tests exist then Run:
       pytest test_api.py
 - For Running Mobile Tests:
-- Start Appium server:
+1- Start Appium server:
       appium
-- Run:
+2- Run:
       pytest test_ui.py
