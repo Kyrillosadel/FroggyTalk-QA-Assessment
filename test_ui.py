@@ -1,6 +1,6 @@
 from appium import webdriver
 
-def test_radio_chat_flow():
+def test_mobile_topup_flow():
     caps = {
         "platformName": "iOS",
         "deviceName": "iPhone 11",
@@ -8,12 +8,21 @@ def test_radio_chat_flow():
         "app": "/path/to/froggytalk.app"
     }
 
-    driver = webdriver.Remote("http://localhost:4723", options=options) 
+    driver = webdriver.Remote("http://localhost:4723/wd/hub", options=options)
 
-    driver.find_element("accessibility id", "RadioTab").click()
-    driver.find_element("accessibility id", "RadioItem_Nigeria").click()
+    # Navigate to Services
+    driver.find_element("accessibility id", "ServicesTab").click()
 
-    chat = driver.find_element("accessibility id", "LiveChat")
-    assert chat.is_displayed()
+    # Open Mobile Top-Up
+    driver.find_element("accessibility id", "MobileTopUp").click()
+
+    # Enter phone number
+    driver.find_element("accessibility id", "PhoneInput").send_keys("08012345678")
+
+    # Select Airtime
+    driver.find_element("accessibility id", "AirtimeOption").click()
+
+    # Verify next screen loads
+    assert driver.find_element("accessibility id", "PaymentButton").is_displayed()
 
     driver.quit()
